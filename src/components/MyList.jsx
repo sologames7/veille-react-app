@@ -2,7 +2,7 @@ import '@sass/content/home/home.scss';
 
 import React from 'react';
 
-import Header from './Header.jsx';
+import Header from './Header';
 
 function MyList() {
 	return (
