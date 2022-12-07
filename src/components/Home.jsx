@@ -1,16 +1,25 @@
 import '@sass/content/home/home.scss';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-import logo from '../assets/images/logo.svg';
+import logo from '../assets/images/logo.png';
+import DisplayArticles from './DisplayArticles';
+import Header from './Header';
 
 function Home() {
+	const tag = 'react';
+	const [fetchedArticles, setFetchedArticles] = useState([]);
+	useEffect(() => {
+		fetch(`https://dev.to/api/articles?tag=${tag}`)
+			.then((response) => response.json())
+			.then((data) => setFetchedArticles(data));
+	}, []);
+
 	return (
-		<div className="home">
-			<header className="home-header">
-				<img src={logo} className="home-logo" alt="logo" />
-			</header>
-		</div>
+		<>
+			<Header />
+			<DisplayArticles articles={fetchedArticles} />
+		</>
 	);
 }
 
