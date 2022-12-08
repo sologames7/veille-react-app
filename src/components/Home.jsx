@@ -4,21 +4,41 @@ import React, { useEffect, useState } from 'react';
 
 import submitFormImage from '../assets/images/loupe.png';
 import DisplayArticles from './DisplayArticles';
+import Filters from './Filters';
 import Header from './Header';
 
 function Home() {
-	const [tagToSearch, setTagToSearch] = useState('css');
+	const [tagToSearch, setTagToSearch] = useState('');
 	const [fetchedArticles, setFetchedArticles] = useState([]);
+	const [copyArticles, setCopyArticles] = useState([]);
 	const [tagSearchbar, setTagSearchbar] = useState('');
+	const [tagListForFilter, setTagListForFilter] = useState([]);
 
 	useEffect(() => {
 		fetch(`https://dev.to/api/articles?tag=${tagToSearch}`)
 			.then((response) => {
-				console.log(response);
 				return response.json();
 			})
-			.then((data) => setFetchedArticles(data));
+			.then((data) => {
+				setFetchedArticles(data);
+				setCopyArticles(data);
+			});
 	}, [tagToSearch]);
+
+	useEffect(() => {
+		const articlesAfterFilters = [];
+		fetchedArticles.forEach((article) => {
+			const res = tagListForFilter.every(function (e) {
+				return article.tag_list.includes(e);
+			});
+
+			if (res) {
+				articlesAfterFilters.push(article);
+			}
+		});
+		console.log(articlesAfterFilters);
+		setCopyArticles(articlesAfterFilters);
+	}, [tagListForFilter]);
 
 	function changeField(event) {
 		const tempFieldName = event.target.name;
@@ -59,7 +79,14 @@ function Home() {
 					alt="Submit Form"
 				/>
 			</form>
-			<DisplayArticles articles={fetchedArticles} tagSearched={tagToSearch} />
+			<Filters
+				copyArticles={copyArticles}
+				setCopyArticles={setCopyArticles}
+				fetchedArticles={fetchedArticles}
+				tagListForFilter={tagListForFilter}
+				setTagListForFilter={setTagListForFilter}
+			/>
+			<DisplayArticles articles={copyArticles} tagSearched={tagToSearch} />
 		</>
 	);
 }

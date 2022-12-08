@@ -21,9 +21,9 @@ function Article({
 			<p>
 				<u>Tags:</u> <i>{tags}</i>
 			</p>
-			<a className="author" href={authorWebsite} target="_blank" rel="noreferrer">
+			<p className="author">
 				By: <u>{author}</u>
-			</a>
+			</p>
 			<p className="publishDate">{publishDate}</p>
 		</a>
 	);

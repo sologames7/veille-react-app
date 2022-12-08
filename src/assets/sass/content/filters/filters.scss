@@ -1,0 +1,34 @@
+.filters{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 40px;
+    h2{
+        font-size: 20px;
+    }
+    button{
+        box-shadow: rgb(27 31 35 / 4%) 0 1px 0, rgb(255 255 255 / 25%) 0 1px 0 inset;
+        border: 1px solid rgba(27, 31, 35, 0.15);
+        background-color: #FAFBFC;
+        font-size: 14px;
+        border-radius: 6px;
+        padding: 6px 16px;
+        width: 180px;
+    }
+    .tagsContainer{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        margin-top: 10px;
+        button{
+            width: auto;
+        }
+        .selectedTag{
+            background-color: lightcyan;
+        }
+    }
+    #resetTags{
+        background-color: #202020;
+        color: white;
+    }
+}

@@ -24,7 +24,9 @@ function DisplayArticles({ articles, tagSearched }) {
 			))}
 		</div>
 	) : (
-		<p className="searcheError">Oops! There is no result for &quot;{tagSearched}&quot;</p>
+		<p className="searcheError">
+			Oops! There is no result for &quot;{tagSearched}&quot;
+		</p>
 	);
 }
 
