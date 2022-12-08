@@ -8,10 +8,11 @@
     text-decoration: none;
     padding: 20px;
     border-radius: 25px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 5px;
     transition: 0.3s;
     &:hover{
-        background-color: rgb(239, 239, 239);
+        // background-color: rgb(239, 239, 239);
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     }
     img{
         align-self: center;
@@ -29,8 +30,8 @@
     .author{
         color: black;
         text-decoration: none;
-        &:hover{
-            color: blue;
-        }
+    }
+    @media (max-width: 700px){
+        width: 50%;
     }
 }

@@ -6,6 +6,7 @@ import submitFormImage from '../assets/images/loupe.png';
 import DisplayArticles from './DisplayArticles';
 import Filters from './Filters';
 import Header from './Header';
+import Footer from './Footer';
 
 function Home() {
 	const [tagToSearch, setTagToSearch] = useState('');
@@ -57,12 +58,10 @@ function Home() {
 	return (
 		<>
 			<Header />
+			<h1>Welcome.</h1>
 			<form
 				className="searchbar"
 				onSubmit={(event) => submitForm(event, tagSearchbar)}>
-				{/* {!fields.titleValid && (
-					<p className="notValid">Title must be not empty and max 50 char</p>
-				)} */}
 				<input
 					type="text"
 					name="tag"
@@ -87,6 +86,7 @@ function Home() {
 				setTagListForFilter={setTagListForFilter}
 			/>
 			<DisplayArticles articles={copyArticles} tagSearched={tagToSearch} />
+			<Footer />
 		</>
 	);
 }
