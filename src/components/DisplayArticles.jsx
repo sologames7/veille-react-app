@@ -4,7 +4,13 @@ import React, { useEffect, useState } from 'react';
 
 import Article from './Article';
 
-function DisplayArticles({ articles, tagSearched }) {
+function DisplayArticles({
+	articles,
+	tagSearched,
+	isArticlesPage,
+	myArticleList,
+	setMyArticleList,
+}) {
 	return articles && articles.length !== 0 ? (
 		<div className="articleList">
 			<h2>Results for &quot;{tagSearched}&quot;</h2>
@@ -20,6 +26,9 @@ function DisplayArticles({ articles, tagSearched }) {
 					publishDate={article.readable_publish_date}
 					author={article.user.name}
 					authorWebsite={article.user.website_url}
+					isArticlesPage={isArticlesPage ?? false}
+					myArticleList={myArticleList ?? false}
+					setMyArticleList={setMyArticleList ?? false}
 				/>
 			))}
 		</div>

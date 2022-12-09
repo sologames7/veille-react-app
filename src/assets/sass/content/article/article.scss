@@ -8,11 +8,11 @@
     text-decoration: none;
     padding: 20px;
     border-radius: 25px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 5px;
     transition: 0.3s;
     &:hover{
         // background-color: rgb(239, 239, 239);
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 20px;
     }
     img{
         align-self: center;
@@ -33,5 +33,19 @@
     }
     @media (max-width: 700px){
         width: 50%;
+    }
+    .actionContainer{
+        width: auto;
+        button{
+            height: 35px;
+            width: 35px;
+            border: none;
+            background-color: transparent;
+            transition: 0.1s;
+            &:hover{
+                transform: scale(1.1);
+            }
+            
+        }
     }
 }
