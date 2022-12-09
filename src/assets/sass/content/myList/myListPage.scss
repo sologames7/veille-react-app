@@ -4,3 +4,57 @@
     justify-content: space-between;
     min-height: 100vh;
 }
+
+.searchAndNew{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    .searchbar{
+        margin: 0;
+        margin-left: 40px;
+    }
+    button{
+        height: 40px;
+        width: 100px;
+        border-radius: 5px;
+        box-shadow: transparent 0 0 0 3px, rgb(18 18 18 / 10%) 0 6px 20px;
+        &:hover{
+            font-weight: bold;
+
+        }
+    }
+}
+
+.formSLideFromBottom{
+    margin: 0;
+    width: 100vw;
+    min-height: 100vh;
+    margin-top: 100vh;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .articleForm{
+        position: fixed;
+        background-color: red;
+        width: 80%;
+        min-height: 30%;
+    }
+}
+.openForm{
+    animation: openForm .5s  ;
+    margin-top: 0vh;
+}
+.closeForm{
+    animation: closeForm .5s  ;
+    margin-top: 100vh;
+}
+
+@keyframes openForm{
+    0%{ margin-top: 100vh;}
+    100%{margin-top: 0vh;}
+}
+@keyframes closeForm{
+    0%{ margin-top: 0vh;}
+    100%{margin-top: 100vh;}
+}

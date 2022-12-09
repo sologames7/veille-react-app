@@ -10,25 +10,21 @@ function DisplayArticles({
 	isArticlesPage,
 	myArticleList,
 	setMyArticleList,
+	setCopyArticles,
 }) {
+	console.log(articles);
+	console.log(myArticleList);
 	return articles && articles.length !== 0 ? (
 		<div className="articleList">
 			<h2>Results for &quot;{tagSearched}&quot;</h2>
 			{articles.map((article, index) => (
 				<Article
-					key={article.id}
-					id={article.id}
-					image={article.social_image}
-					title={article.title}
-					description={article.description}
-					link={article.url}
-					tags={article.tags}
-					publishDate={article.readable_publish_date}
-					author={article.user.name}
-					authorWebsite={article.user.website_url}
+					key={index}
+					data={article}
 					isArticlesPage={isArticlesPage ?? false}
-					myArticleList={myArticleList ?? false}
+					articles={articles ?? false}
 					setMyArticleList={setMyArticleList ?? false}
+					setCopyArticles={setCopyArticles ?? false}
 				/>
 			))}
 		</div>

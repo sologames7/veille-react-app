@@ -5,8 +5,8 @@ import React, { useEffect, useState } from 'react';
 import submitFormImage from '../assets/images/loupe.png';
 import DisplayArticles from './DisplayArticles';
 import Filters from './Filters';
-import Header from './Header';
 import Footer from './Footer';
+import Header from './Header';
 
 function Home() {
 	const [tagToSearch, setTagToSearch] = useState('');
@@ -37,7 +37,6 @@ function Home() {
 				articlesAfterFilters.push(article);
 			}
 		});
-		console.log(articlesAfterFilters);
 		setCopyArticles(articlesAfterFilters);
 	}, [tagListForFilter]);
 

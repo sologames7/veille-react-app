@@ -3,19 +3,21 @@ import '@sass/content/myList/myListPage.scss';
 import React, { useEffect, useState } from 'react';
 
 import submitFormImage from '../assets/images/loupe.png';
-import DisplayArticles from './DisplayArticles';
-import Filters from './Filters';
-import Header from './Header';
-import Footer from './Footer';
 import data from '../data/myListTemp';
 import useLocalStorage from '../hooks/useLocalstorage';
+import DisplayArticles from './DisplayArticles';
+import Filters from './Filters';
+import Footer from './Footer';
+import Header from './Header';
+import FormMyArticles from './FormMyArticles';
 // id aléatoire : Math.random().toString(36).slice.(2)
 function MyList() {
-	const [tagToSearch, setTagToSearch] = useState('');
+	const [titleToSearch, setTitleToSearch] = useState('');
 	const [myArticleList, setMyArticleList] = useLocalStorage('myList', data);
-	const [copyArticles, setCopyArticles] = useState([]);
-	const [tagSearchbar, setTagSearchbar] = useState('');
+	const [copyArticles, setCopyArticles] = useState([...myArticleList]);
+	const [searchbar, setSearchbar] = useState('');
 	const [tagListForFilter, setTagListForFilter] = useState([]);
+	const [isOpenForm, setIsOpenForm] = useState(false);
 
 	useEffect(() => {
 		const articlesAfterFilters = [];
@@ -31,10 +33,69 @@ function MyList() {
 		setCopyArticles(articlesAfterFilters);
 	}, [tagListForFilter]);
 
+	useEffect(() => {
+		let articlesFiltred = [];
+		myArticleList.forEach((article) => {
+			if (article.title.toUpperCase().includes(titleToSearch.toUpperCase())) {
+				articlesFiltred.push(article);
+			}
+		});
+		setCopyArticles(articlesFiltred);
+	}, [titleToSearch]);
+
+	function changeField(event) {
+		const tempFieldName = event.target.name;
+		const key = event.target.value;
+		if (tempFieldName === 'title') {
+			setSearchbar(key);
+		}
+		setTitleToSearch(key);
+	}
+
+	function submitForm(event, title) {
+		event.preventDefault();
+	}
+
+	document.addEventListener('keydown', (event) => {
+		console.log(event.keyCode);
+		if(event.keyCode === 27 && isOpenForm ){
+			setIsOpenForm(false);
+		}
+	});
+
 	return (
 		<>
+			<FormMyArticles isOpenForm={isOpenForm} setIsOpenForm={setIsOpenForm} />
 			<Header />
 			<h1>My list</h1>
+			<div className="searchAndNew">
+				<form
+					className="searchbar"
+					onSubmit={(event) => submitForm(event, searchbar)}>
+					<input
+						type="text"
+						name="title"
+						value={searchbar}
+						placeholder="Search for an article"
+						onChange={(event) => changeField(event)}
+					/>
+
+					<input
+						className="loupe"
+						type="image"
+						src={submitFormImage}
+						name="submit"
+						alt="Submit Form"
+					/>
+				</form>
+				<button
+					className="buttonNew"
+					onClick={() =>
+						isOpenForm ? setIsOpenForm(false) : setIsOpenForm(true)
+					}>
+					New article
+				</button>
+			</div>
 			<Filters
 				copyArticles={copyArticles}
 				setCopyArticles={setCopyArticles}
@@ -44,10 +105,12 @@ function MyList() {
 			/>
 			<DisplayArticles
 				articles={copyArticles}
-				tagSearched={tagToSearch}
+				tagSearched={titleToSearch}
 				isArticlesPage={true}
 				setMyArticleList={setMyArticleList}
-				myArticleList={myArticleList}
+				setCopyArticles={setCopyArticles}
+
+				// myArticleList={myArticleList}
 			/>
 			<Footer />
 		</>
