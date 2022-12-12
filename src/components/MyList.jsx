@@ -8,9 +8,9 @@ import useLocalStorage from '../hooks/useLocalstorage';
 import DisplayArticles from './DisplayArticles';
 import Filters from './Filters';
 import Footer from './Footer';
-import Header from './Header';
 import FormMyArticles from './FormMyArticles';
-// id aléatoire : Math.random().toString(36).slice.(2)
+import Header from './Header';
+
 function MyList() {
 	const [titleToSearch, setTitleToSearch] = useState('');
 	const [myArticleList, setMyArticleList] = useLocalStorage('myList', data);
@@ -18,6 +18,15 @@ function MyList() {
 	const [searchbar, setSearchbar] = useState('');
 	const [tagListForFilter, setTagListForFilter] = useState([]);
 	const [isOpenForm, setIsOpenForm] = useState(false);
+	const [formFields, setFormFields] = useState([
+		'',
+		'',
+		new Date('11-09-2003'),
+		'',
+		'',
+		'',
+		'',
+	]);
 
 	useEffect(() => {
 		const articlesAfterFilters = [];
@@ -34,7 +43,7 @@ function MyList() {
 	}, [tagListForFilter]);
 
 	useEffect(() => {
-		let articlesFiltred = [];
+		const articlesFiltred = [];
 		myArticleList.forEach((article) => {
 			if (article.title.toUpperCase().includes(titleToSearch.toUpperCase())) {
 				articlesFiltred.push(article);
@@ -57,15 +66,23 @@ function MyList() {
 	}
 
 	document.addEventListener('keydown', (event) => {
-		console.log(event.keyCode);
-		if(event.keyCode === 27 && isOpenForm ){
+		if (event.keyCode === 27 && isOpenForm) {
 			setIsOpenForm(false);
 		}
 	});
 
 	return (
 		<>
-			<FormMyArticles isOpenForm={isOpenForm} setIsOpenForm={setIsOpenForm} />
+			<FormMyArticles
+				isOpenForm={isOpenForm}
+				setIsOpenForm={setIsOpenForm}
+				formFields={formFields}
+				setFormFields={setFormFields}
+				copyArticles = {copyArticles}
+				setCopyArticles = {setCopyArticles}
+				myArticleList = {myArticleList}
+				setMyArticleList ={setMyArticleList}
+			/>
 			<Header />
 			<h1>My list</h1>
 			<div className="searchAndNew">
@@ -106,7 +123,7 @@ function MyList() {
 			<DisplayArticles
 				articles={copyArticles}
 				tagSearched={titleToSearch}
-				isArticlesPage={true}
+				isArticlesPage
 				setMyArticleList={setMyArticleList}
 				setCopyArticles={setCopyArticles}
 

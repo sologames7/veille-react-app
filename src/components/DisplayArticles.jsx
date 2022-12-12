@@ -12,8 +12,6 @@ function DisplayArticles({
 	setMyArticleList,
 	setCopyArticles,
 }) {
-	console.log(articles);
-	console.log(myArticleList);
 	return articles && articles.length !== 0 ? (
 		<div className="articleList">
 			<h2>Results for &quot;{tagSearched}&quot;</h2>

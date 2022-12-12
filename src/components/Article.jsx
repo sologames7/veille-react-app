@@ -5,14 +5,18 @@ import React, { useEffect, useState } from 'react';
 import pen from '../assets/images/blackEdit.png';
 import trash from '../assets/images/trashBlack.png';
 
-function Article({
-	data,
-	isArticlesPage,
-	articles,
-	setMyArticleList,
-	setCopyArticles,
-}) {
-	const { id, social_image, title, description, link, tags, publishDate, user, authorWebsite } = data;
+function Article({ data, isArticlesPage, articles, setMyArticleList, setCopyArticles }) {
+	const {
+		id,
+		social_image,
+		title,
+		description,
+		link,
+		tags,
+		readable_publish_date,
+		user,
+		authorWebsite,
+	} = data;
 	function deleteArticle(id) {
 		console.log('delete article', id);
 		const tempMyList = [...articles];
@@ -42,7 +46,7 @@ function Article({
 			<a href={authorWebsite} target="_blank" className="author" rel="noreferrer">
 				By: <u>{user.name}</u>
 			</a>
-			<p className="publishDate">{publishDate}</p>
+			<p className="publishDate">{readable_publish_date}</p>
 			{isArticlesPage ? (
 				<div className="actionContainer">
 					<button onClick={() => deleteArticle(id)}>
