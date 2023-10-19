@@ -42,5 +42,7 @@ jobs:
         run: npm run build
 
        # deploy to github pages with the build not the artifact
+      - name: installghpage
+        run: npm install --save gh-pages
       - name: Deploy
         run: npm run deploy
