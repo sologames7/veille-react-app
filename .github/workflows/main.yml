@@ -43,6 +43,10 @@ jobs:
 
        # deploy to github pages with the build not the artifact
       - name: installghpage
-        run: npm install --save gh-pages
+        run: |
+          npm install --save gh-pages
+          git config --global user.email "moreau.solo11@gmail.com"
+          git config --global user.name "sologames7"
+
       - name: Deploy
         run: npm run deploy
