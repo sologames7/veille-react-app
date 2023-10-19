@@ -41,11 +41,9 @@ jobs:
       - name: Build
         run: npm run build
 
-      # deploy to github pages with the build not the artifact
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@4.1.1
+       # deploy to github pages with the build not the artifact
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          branch: gh-pages
-          folder: dist
-          clean: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: dist
