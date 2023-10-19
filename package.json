@@ -1,5 +1,6 @@
 {
 	"name": "template-react-vite",
+	"homepage" : "https://sologames7.github.io/veille-react-app/",
 	"version": "0.0.0",
 	"private": true,
 	"scripts": {
