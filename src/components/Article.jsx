@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 
 import pen from '../assets/images/blackEdit.png';
 import trash from '../assets/images/trashBlack.png';
-
+// test
 function Article({ data, isArticlesPage, articles, setMyArticleList, setCopyArticles }) {
 	const {
 		id,
